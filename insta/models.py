@@ -36,7 +36,7 @@ class Image(models.Model):
         return self.image_name
     
 
-class Comment(models.Model):
+class Comments(models.Model):
     image = models.ForeignKey(Image)
     user = models.ForeignKey(User)
     comment = models.TextField(max_length=200)
