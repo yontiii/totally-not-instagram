@@ -4,7 +4,7 @@ import datetime as dt
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    profile_photo = models.ImageField(upload_to='profiles/')
+    profile_photo = models.ImageField(default='default.jpg',upload_to='profiles/')
     bio = models.TextField(max_length=500)
     website = models.CharField(max_length=10, blank=True)
     followers = models.ManyToManyField('Profile',blank=True, related_name='followers_profile')
