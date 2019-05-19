@@ -2,31 +2,55 @@
 {% load bootstrap3 %}
 {% block content %}
 <div class="container">
-    <div class="col-md-6">
-        {% if form.errors %}
-        <p class="alert alert-danger">Some Information may be incorrect</p>
-        {% endif %}
-
-        <div class="card card-cascade  wider">
-            <div class="card-body card-body-cascade ">
-                <h4 class="card-title blue-text pb-2 text-center">Instagram</h4>
-                <br>
-                <h5 class="card-header info-color white-text text-center py-4">
-                    <strong>Sign In</strong>
-                </h5>
-                <form action="/accounts/register/" method="POST" style="color:#757575;">
-                    {% csrf_token %}
-                    {% bootstrap_form form %}
-
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-info btn-md text-center" value="Sign In"
-                            style="text-align:center;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="https://www.instagram.com/static/images/homepage/screenshot1.jpg/d6bf0c928b5a.jpg"
+                            alt="logo" style="margin-left:20px;height: 400;width: 450;">
                     </div>
-                    <input type="hidden" name="next" value="{{next}}">
-                </form>
+                    <div class="col-md-6">
+                        <img src="https://www.instagram.com/static/images/homepage/screenshot5.jpg/0a2d3016f375.jpg"
+                            alt="" style="margin-left:20px;">
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel panel-default">
+                <h4 class="text-center text-muted">Don't have an account?</h4>
+               
             </div>
         </div>
+        <div class="col-md-6">
+                {% if form.errors %}
+                <p class="alert alert-danger">Some Information may be incorrect</p>
+                {% endif %}
+        
+        
+                <div class="card card-cascade  wider">
+                    <div class="card-body card-body-cascade ">
+                        <h1 class="text black-text card-header text-center" style="font-family: 'Lobster Two', cursive;">
+                            Instagram</h1> <br>
+                        <br>
+                        <h5 class="card-header info-color white-text text-center py-4">
+                            <strong>Sign In</strong>
+                        </h5>
+                        <form action="/accounts/register/" method="POST" style="color:#757575;">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+        
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-info btn-md text-center" value="Sign In"
+                                    style="text-align:center;">
+                            </div>
+                            <input type="hidden" name="next" value="{{next}}">
+                        </form>
+                    </div>
+                </div>
+            </div>
     </div>
+    
 </div>
 </div>
 

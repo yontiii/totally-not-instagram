@@ -1,12 +1,21 @@
-{%extends "registration/base.html"%} {% load bootstrap3 %}{% load static %}   
-{% block content %}    
+{%extends "registration/base.html"%} {% load bootstrap3 %}{% load static %}
+{% block content %}
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                    <img src="{% static 'home.png' %}" alt="logo" style="margin-left:20px;height: 400;width: 450;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="https://www.instagram.com/static/images/homepage/screenshot1.jpg/d6bf0c928b5a.jpg"
+                            alt="logo" style="margin-left:20px;height: 400;width: 450;">
+                    </div>
+                    <div class="col-md-6">
+                        <img src="https://www.instagram.com/static/images/homepage/screenshot5.jpg/0a2d3016f375.jpg" alt="">
+                    </div>
+                </div>
+
             </div>
-            
+
         </div>
         <div class="col-md-6">
             {% if form.errors %}
@@ -15,7 +24,8 @@
 
             <div class="card card-cascade">
                 <div class="card-body card-body-cascade ">
-                        <h1 class="text black-text card-header text-center"style="font-family: 'Lobster Two', cursive;">Instagram</h1> <br>
+                    <h1 class="text black-text card-header text-center" style="font-family: 'Lobster Two', cursive;">
+                        Instagram</h1> <br>
                     <h5 class="card-header info-color white-text text-center py-4">
                         <strong>Sign in</strong>
                     </h5>
@@ -25,7 +35,7 @@
 
                         <div class="form-group">
                             <input type="submit" class="btn btn-info btn-md text-center" value="Sign Up"
-                                style="text-align:center;"> 
+                                style="text-align:center;">
                         </div>
                         <input type="hidden" name="next" value="{{next}}">
                     </form>

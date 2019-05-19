@@ -1,14 +1,14 @@
 from django.db import models
-from django.
+
 
 
 class Profile(models.Model):
     profile_photo = models.ImageField(upload_to='profiles/',default='default.jpg')
     bio = models.TextField(max_length=500)
-    website = models.CharField(max_lenth=20, blank=True)
-    followers = models.ManyToManyField('Profile',blank=True)
-    following = models.ManyToManyField('Profile',blank=True)
-    phone_number = models.CharField()
+    website = models.CharField(max_length=20, blank=True)
+    followers = models.ManyToManyField('Profile',blank=True, related_name='followers_profile')
+    following = models.ManyToManyField('Profile',blank=True,related_name='following_profile')
+    phone_number = models.CharField(max_length=20)
     
     
     
