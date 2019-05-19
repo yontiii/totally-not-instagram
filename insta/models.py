@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models  import User
-
+import datetime as dt
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -15,11 +15,10 @@ class Profile(models.Model):
         return self.bio
 
 class Image(models.Model):
+    profile = models.ForeignKey(Profile,null=True, blank=True) 
     image = models.ImageField(upload_to='images/')
     image_name = models.CharField(max_length=20)
     image_caption = models.TextField(max_length=150)
-    likes = models.IntegerField()
-    profile = models.ForeignKey(Profile) 
     date_posted = models.DateTimeField(auto_now_add=True)
     
     def save_image(self):
@@ -38,8 +37,11 @@ class Image(models.Model):
     
 
 class Comment(models.Model):
-    post = models.ForeignKey(Image)
+    image = models.ForeignKey(Image)
     user = models.ForeignKey(User)
-    comment = models.CharField(max_length=100, blank=True)
-    comment_on = models.DateTimeField(auto_now_add=True)
+    comment = models.TextField(max_length=200)
+    posted_on = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.comment
     
