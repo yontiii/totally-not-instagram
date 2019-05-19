@@ -8,3 +8,7 @@ def home(request):
     
     return HttpResponse('Welcome to instagram')
     
+
+@login_required(login_url='/accounts/login/')
+def profile(request):
+    return render(request,'users/profile.html')
