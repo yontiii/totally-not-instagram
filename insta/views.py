@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import  login_required
 from .forms import UserUpdateForm,ProfileUpdateForm
+from django.contrib.auth.models import User
+from .models import Profile
 
 
 # Create your views here.
@@ -20,7 +22,7 @@ def profile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            
+            return redirect("profile")
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
