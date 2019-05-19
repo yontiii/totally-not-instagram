@@ -1,0 +1,38 @@
+{%extends "registration/base.html"%}
+{% load bootstrap3 %}
+{% block content %}
+<div class="container">
+    <div class="col-md-6">
+        {% if form.errors %}
+        <p class="alert alert-danger">Some Information may be incorrect</p>
+        {% endif %}
+
+        <div class="card card-cascade  wider">
+            <div class="card-body card-body-cascade ">
+                <h4 class="card-title blue-text pb-2 text-center">Instagram</h4>
+                <br>
+                <h5 class="card-header info-color white-text text-center py-4">
+                    <strong>Sign In</strong>
+                </h5>
+                <form action="/accounts/register/" method="POST" style="color:#757575;">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-info btn-md text-center" value="Sign In"
+                            style="text-align:center;">
+                    </div>
+                    <input type="hidden" name="next" value="{{next}}">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+{% endblock %}
