@@ -1,74 +1,38 @@
-<!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-light color=#f9fbe7">
-        <a class="navbar-brand" href="#"><i class="fab fa-instagram">Instagram</i></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-          aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-          <ul class="navbar-nav mr-auto">
-          </ul>
-          <ul class="navbar-nav ml-auto nav-flex-icons">
-            <li class="nav-item">
-              <a class="nav-link waves-effect waves-light">
-                <i class="fab fa-twitter"></i>
-              </a>
-            </li>
-           
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-                    <a class="nav-link waves-effect waves-light">
-                      <i class="fa  fa-user"></i>
-                    </a>
-                  </li>
-            {% else %}
+<style>
+ 
+  #post{
+    background: #e53935;
+    color:white;
+    padding: 5px;
+  }
+  #post:hover{
+    background:#FF5252;
+  }
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user"></i>
-              </a>
-          </ul>
-          {% endif %}
-        </div>
-      </nav>
-      <!--/.Navbar -->
+</style>
+<header>
+  <nav style="background-color:white;">
+    <div class="navbar mx-5">
+      <div class="navbar-brand">
+        <i class="fab fa-instagram" style="font-size:30px;" id="heading">Instagram</i>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      </div>
+      <div class="nav-search">
+        <form class="form-inline md-form form-sm active-pink active-pink-2 mt-2">
+          <i class="fas fa-search" aria-hidden="true"></i>
+          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+      <div class="nav-right">
+          <a href=""><i class="far fa-compass" style="
+          font-size:20px;"></i></a>
+        <a class="newpost mr-5" id="post">+ NEW POST</a>
+      
+        <img src="" alt="" />
+        <a href="{% url 'profile' %}" class="avatar">
+          <img class="rounded-circle" alt="" src="{{user.profile.profile_photo.url}}" height="60" width="45" />
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>

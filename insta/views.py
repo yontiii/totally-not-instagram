@@ -1,16 +1,20 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import  login_required
-from .forms import UserUpdateForm,ProfileUpdateForm
+from .forms import UserUpdateForm,ProfileUpdateForm,UserUploadForm
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile,Image
 
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
     
-    return HttpResponse('Welcome to instagram')
+    images = Image.objects.all()
+    users = User.objects.all()
+    
+    
+    return render(request,'home.html',{"images":images,})
     
 
 @login_required(login_url='/accounts/login/')
@@ -21,10 +25,17 @@ def profile(request):
         
         if u_form.is_valid():
             u_form.save()
-            return redirect("profile")
+            return redirect('profile.html')
     else:
         u_form = UserUpdateForm(instance=request.user)
         # p_form = ProfileUpdateForm(instance=request.user.profile)
         
     
     return render(request,'users/profile.html',{"u_form":u_form})
+
+@login_required(login_url='/accounts/login/')
+def post_image(request):
+    upload_form = UserUploadForm()
+    
+    return render(request,'uploads.html',{"upload_form":upload_form})
+    

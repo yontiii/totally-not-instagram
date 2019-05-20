@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+<div>
+<div class="row">
+    {% for image in images %}
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-title">
+                <img src="{{user.profile.profile_photo.url}}" alt="" width="30" height="40"> 
+                <a href=""></a>
+            </div>
+            <div class="card-img-top ">
+                <img src="{{image.image.url}}" alt="" class="rgba-red-slight img-fluid" width="500" height="600">
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

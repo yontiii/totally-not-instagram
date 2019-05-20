@@ -11,16 +11,16 @@
               
                 <!-- Avatar -->
                 <div class="avatar mx-auto white">
-                  <img src="{{user.profile.profile_photo.url}}" class="rounded-circle" alt=" avatar" height="200" width="200">
+                  <img src="{{user.profile.profile_photo.url}}"  alt=" avatar" height="200" width="200">
                 </div>
               
                 <!-- Content -->
                 <div class="card-body">
                   <!-- Name -->
-                  <h4 class="card-title text-center blue-text">{{user.username}}</h4>
+                  <h4 class="card-title text-center pink-text"> {{user.username}}</h4>
                   <hr>
                   <!-- Quotation -->
-                  <p><i class="fab fa-google-plus-g"></i> {{user.email}}</p>
+                  <p><i class="fab fa-google-plus-g pink-text animated FadeInRight"></i> : {{user.email}}</p>
                 </div>
               
               </div>
@@ -29,7 +29,7 @@
         <div class="col-md-8">
             <div class="card card-cascade">
                 <div class="card-body card-body-cascade ">
-                    <h1 class="  text-center blue-text" style="">
+                    <h1 class="  text-center pink-text">
                         Update Profile</h1> <br> <hr>
 
                     <form action="/accounts/register/" method="POST" style="color:#757575;"
@@ -39,7 +39,7 @@
 
 
                         <div class="form-group">
-                            <input type="submit" class="btn btn-info btn-md text-center" value="Update"
+                            <input type="submit" class="btn btn-pink btn-md text-center" value="Update"
                                 style="text-align:center;">
                         </div>
                     </form>
