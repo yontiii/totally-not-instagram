@@ -1,33 +1,55 @@
 {%extends "base.html"%}
 {% load bootstrap3 %}
 {% block content %}
-<div class="content-section">
-    <div class="media">
-        <img src="{{ user.profile_photo.url }}" alt="logo" class="rounded-circle">
-        <div class="media-body">
-            <h2 class="acccount-heading">{{user.username}}</h2>
-            <p class="text-primary">{{user.email}}</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card testimonial-card">
+
+                <!-- Background color -->
+                <div class="card-up indigo lighten-1"></div>
+              
+                <!-- Avatar -->
+                <div class="avatar mx-auto white">
+                  <img src="{{user.profile.profile_photo.url}}" class="rounded-circle" alt=" avatar" height="200" width="200">
+                </div>
+              
+                <!-- Content -->
+                <div class="card-body">
+                  <!-- Name -->
+                  <h4 class="card-title text-center blue-text">{{user.username}}</h4>
+                  <hr>
+                  <!-- Quotation -->
+                  <p><i class="fab fa-google-plus-g"></i> {{user.email}}</p>
+                </div>
+              
+              </div>
+              <!-- Card -->
+        </div>
+        <div class="col-md-8">
+            <div class="card card-cascade">
+                <div class="card-body card-body-cascade ">
+                    <h1 class="  text-center blue-text" style="">
+                        Update Profile</h1> <br> <hr>
+
+                    <form action="/accounts/register/" method="POST" style="color:#757575;"
+                        enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% bootstrap_form u_form %}
+
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-info btn-md text-center" value="Update"
+                                style="text-align:center;">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div class="card card-cascade">
-    <div class="card-body card-body-cascade ">
-        <h1 class="text black-text card-header text-center" style="font-family: 'Lobster Two', cursive;">
-            Update Profile</h1> <br>
 
-        <form action="/accounts/register/" method="POST" style="color:#757575;" enctype="multipart/form-data">
-            {% csrf_token %}
-            {% bootstrap_form u_form %}
-            {% bootstrap_form p_form %}
 
-            <div class="form-group">
-                <input type="submit" class="btn btn-info btn-md text-center" value="Update"
-                    style="text-align:center;">
-            </div>
-            <input type="hidden" name="next" value="{{next}}">
-        </form>
-    </div>
-</div>
 
 
 
