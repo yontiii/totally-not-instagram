@@ -51,7 +51,7 @@ class Image(models.Model):
 class Comments(models.Model):
     image = models.ForeignKey(Image)
     user = models.ForeignKey(User)
-    comment = models.TextField(max_length=200)
+    comment = models.CharField(max_length=200)
     posted_on = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
