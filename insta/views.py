@@ -35,7 +35,16 @@ def profile(request):
 
 @login_required(login_url='/accounts/login/')
 def post_image(request):
-    upload_form = UserUploadForm()
+    current_user = request.user
+    if request.method == 'POST':
+        upload_form = UserUploadForm(request.POST, request.FILES)
+        if upload_form.is_valid():
+            upload_form.save()
+            return redirect('home.html')
+        else:
+            upload_form = UserUploadForm()
+            
+        
     
     return render(request,'uploads.html',{"upload_form":upload_form})
     

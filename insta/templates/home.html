@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="row">
-<div>
+<div class="col-md-10">
 <div class="row">
     {% for image in images %}
     <div class="col-md-4">
         <div class="card">
             <div class="card-title">
-                <img src="{{user.profile.profile_photo.url}}" alt="" width="30" height="40"> 
+                <img src="{{user.profile.profile_photo.url}}" alt="" width="20" height="30">
                 <a href="">{{user.profile.user}}</a>
             </div>
             <div class="card-img-top ">
-                <img src="{{image.image.url}}" alt="" class="rgba-red-slight img-fluid" width="500" height="600">
+                <img src="{{image.image.url}}" alt="" class="rgba-red-slight i" width="100%" height="350">
+            </div>
+            <div class="card-footer">
+                <h2></h2>
             </div>
         </div>
     </div>
@@ -19,7 +22,29 @@
 </div>
 
 </div>
-
+<div class="col-md-2">
+    <div class="card testimonial-card">
+        <!-- Background color -->
+        <div class="card-up indigo lighten-1"></div>
+      
+        <!-- Avatar -->
+        <div class="avatar mx-auto white">
+          <img src="{{user.profile.profile_photo.url}}"  alt=" avatar" height="200" width="200">
+        </div>
+      
+        <!-- Content -->
+        <div class="card-body">
+          <!-- Name -->
+          <h4 class="card-title text-center pink-text"> {{user.username}}</h4>
+          <hr>
+          <!-- Quotation -->
+          <p><i class="fab fa-google-plus-g pink-text animated FadeInRight"></i> : {{user.email}}</p>
+        </div>
+      
+      </div>
+      <!-- Card -->
+   
+</div>
 </div>
 
 {% endblock %}

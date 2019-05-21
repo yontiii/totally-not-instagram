@@ -25,4 +25,4 @@ class UserUploadForm(forms.ModelForm):
 class CommentsForm(forms.ModelForm):
     class Meta:
         model = Comments
-        field = ['comments']
+        fields = ['comment']
