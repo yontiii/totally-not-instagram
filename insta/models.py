@@ -22,6 +22,17 @@ class Profile(models.Model):
     @receiver(post_save, sender=User) 
     def save_profile(sender,instance,**kwargs):
         instance.profile.save()  
+        
+    @classmethod
+    def get_by_id(cls,id):
+        profile = Profile.objects.get(user = id)
+        return profile
+    
+    @classmethod
+    def filter_by_id(cls,id):
+        profile = Profile.objects.filter(user = id).first()
+        return profile
+    
     
     def __str__(self):
         return self.bio
@@ -31,7 +42,10 @@ class Image(models.Model):
     image = models.ImageField(upload_to='images/')
     image_name = models.CharField(max_length=20)
     image_caption = models.TextField(max_length=150)
-    date_posted = models.DateTimeField(auto_now_add=True)
+    date_posted = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ('date_posted',)
     
     def save_image(self):
         self.save()
@@ -42,6 +56,16 @@ class Image(models.Model):
     @classmethod
     def update_image(cls, id):
         images = cls.objects.filter(id=id).update(id=id)
+        return images
+    
+    @classmethod
+    def get_all_images(cls):
+        images = Image.objects.all()
+        return images
+    
+    @classmethod
+    def get_profile_images(cls,profile):
+        images = Image.objects.filter(profile__pk=profile)
         return images
     
     def __str__(self):

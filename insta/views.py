@@ -10,7 +10,7 @@ from .models import Profile,Image
 @login_required(login_url='/accounts/login/')
 def home(request):
     
-    images = Image.objects.all()
+    images = Image.get_all_images()
     users = User.objects.all()
     
     
@@ -18,7 +18,7 @@ def home(request):
     
 
 @login_required(login_url='/accounts/login/')
-def profile(request):
+def update_profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST,instance=request.user)
         # p_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
@@ -35,16 +35,16 @@ def profile(request):
 
 @login_required(login_url='/accounts/login/')
 def post_image(request):
-    current_user = request.user
     if request.method == 'POST':
         upload_form = UserUploadForm(request.POST, request.FILES)
         if upload_form.is_valid():
+            upload = upload_form.save(commit=False)
             upload_form.save()
             return redirect('home.html')
-        else:
-            upload_form = UserUploadForm()
+    else:
+        upload_form = UserUploadForm()
             
-        
-    
-    return render(request,'uploads.html',{"upload_form":upload_form})
-    
+    return render(request,'uploads.html',{"upload_form":upload_form,})
+
+
+@login_required(login_url='/accounts/login/')

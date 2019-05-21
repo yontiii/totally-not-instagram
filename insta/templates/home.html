@@ -3,12 +3,11 @@
 <div class="row">
 <div class="col-md-10">
 <div class="row">
-    {% for image in images %}
     <div class="col-md-4">
-        <div class="card">
+        <div class="card animated zoomInRight">
             <div class="card-title">
                 <img src="{{user.profile.profile_photo.url}}" alt="" width="20" height="30">
-                <a href="">{{user.profile.user}}</a>
+                <a href="">{{image.profile.user}}</a>
             </div>
             <div class="card-img-top ">
                 <img src="{{image.image.url}}" alt="" class="rgba-red-slight i" width="100%" height="350">
@@ -18,7 +17,7 @@
             </div>
         </div>
     </div>
-    {% endfor %}
+
 </div>
 
 </div>

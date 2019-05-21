@@ -11,7 +11,7 @@
 
 </style>
 <header>
-  <nav style="background-color:white;">
+  <nav style="background-color:white;" class="animated fadeInRight">
     <div class="navbar mx-5">
       <div class="navbar-brand">
         <a href="{% url 'home' %}"><i class="fab fa-instagram" style="font-size:30px;" id="heading" >Instagram</i></a>
@@ -26,7 +26,7 @@
       <div class="nav-right">
           <a href=""><i class="far fa-compass" style="
           font-size:20px;"></i></a>
-        <a class="newpost mr-5" id="post">+ NEW POST</a>
+        <a class="newpost mr-5" id="post" href="{% url 'uploads' %}">+ NEW POST</a>
       
         <img src="" alt="" />
         <a href="{% url 'profile' %}" class="avatar">
