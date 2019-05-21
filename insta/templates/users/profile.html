@@ -43,7 +43,7 @@
                    
                     <p class="font3">{{profile_details.bio|safe}}</p>
                     {% if profile.username == user.username %}
-                    <p><a href="{% url 'post_image' %}">Add Image</a></p>
+                    <a class="newpost mr-5" id="post" href="{% url 'post_image' %}">+ NEW POST</a>
                     {% endif %} 
                 </div>
             </div>
@@ -53,9 +53,15 @@
     <h3 style="text-align: center;">All Posts</h3>
     <div class="row user-images">
         {% for img in images %}
-        <div class="col-md-4 images">
-            <img src="{{img.image.url}}" alt="Image">
+        <div class="col-md-4">
+            <div class="card animated zoomInRight">
+                <div class="card-img-top ">
+                    <img src="{{img.image.url}}" alt="" class="rgba-red-slight i" width="100%" height="350">
+                </div>
+              
+            </div>
         </div>
+       
         {% empty %}
         <div class="col-md-12">
             <h2> No Uploaded images</h2>

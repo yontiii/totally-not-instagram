@@ -8,7 +8,7 @@
         <div class="card animated zoomInRight">
             <div class="card-title">
                 <img src="{{user.profile.profile_photo.url}}" alt="" width="20" height="30">
-                <a href="">{{image.profile}}</a>
+                <a href="{% url 'profile' username=image.profile.username %}">{{image.profile}}</a>
             </div>
             <div class="card-img-top ">
                 <img src="{{image.image.url}}" alt="" class="rgba-red-slight i" width="100%" height="350">
