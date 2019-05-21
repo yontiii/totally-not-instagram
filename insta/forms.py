@@ -2,8 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import Profile,Image,Comments
 
-from pyuploadcare.dj.forms import FileWidget
-from pyuploadcare.dj.models import ImageField
+
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
