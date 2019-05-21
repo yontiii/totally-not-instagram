@@ -4,6 +4,8 @@ import datetime as dt
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     profile_photo = models.ImageField(default='default.jpg',upload_to='profiles/')
@@ -38,7 +40,7 @@ class Profile(models.Model):
         return self.bio
 
 class Image(models.Model):
-    profile = models.ForeignKey(User,null=True, blank=True) 
+    profile = models.ForeignKey(User,on_delete=models.CASCADE) 
     image = models.ImageField(upload_to='images/')
     image_name = models.CharField(max_length=20)
     image_caption = models.TextField(max_length=150)
@@ -66,6 +68,7 @@ class Image(models.Model):
     @classmethod
     def get_profile_images(cls,profile):
         images = Image.objects.filter(profile__pk=profile)
+        print(images)
         return images
     
     def __str__(self):
@@ -77,6 +80,13 @@ class Comments(models.Model):
     user = models.ForeignKey(User)
     comment = models.CharField(max_length=200)
     posted_on = models.DateTimeField(auto_now_add=True)
+    
+    def save_comment(self):
+        self.save()
+        
+    @classmethod
+    def get_comments_by_images(cls , id):
+        comments = Comments.objects.filter(image__pk=id)
     
     def __str__(self):
         return self.comment

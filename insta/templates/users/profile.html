@@ -1,56 +1,81 @@
-{%extends "base.html"%}
-{% load bootstrap3 %}
+{% extends 'base.html' %}
+
 {% block content %}
-<div class="container">
+
+<div class="container top">
     <div class="row">
-        <div class="col-md-4">
-            <div class="card testimonial-card">
-
-                <!-- Background color -->
-                <div class="card-up indigo lighten-1"></div>
-              
-                <!-- Avatar -->
-                <div class="avatar mx-auto white">
-                  <img src="{{user.profile.profile_photo.url}}"  alt=" avatar" height="200" width="200">
+        <div class="col-md-12">
+            <div class="row top-section">
+                <div class="col-md-5 profile-image">
+                
+                    <img src="{{profile_details.profile_photo.url}}" alt="profile-photo" width="100" height="150">
                 </div>
-              
-                <!-- Content -->
-                <div class="card-body">
-                  <!-- Name -->
-                  <h4 class="card-title text-center pink-text"> {{user.username}}</h4>
-                  <hr>
-                  <!-- Quotation -->
-                  <p><i class="fab fa-google-plus-g pink-text animated FadeInRight"></i> : {{user.email}}</p>
-                </div>
-              
-              </div>
-              <!-- Card -->
-        </div>
-        <div class="col-md-8">
-            <div class="card card-cascade">
-                <div class="card-body card-body-cascade ">
-                    <h1 class="  text-center pink-text">
-                        Update Profile</h1> <br> <hr>
-
-                    <form action="/accounts/register/" method="POST" style="color:#757575;"
-                        enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {% bootstrap_form u_form %}
-
-
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-pink btn-md text-center" value="Update"
-                                style="text-align:center;">
-                        </div>
-                    </form>
+                <div class="col-md-5 text-center">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <span class="username">{{ profile.username }}</span> 
+                        </li>
+                        {% if profile.username == user.username %}
+                        <li class="list-inline-item">
+                            
+                        </li>
+                        <li class="list-inline-item">
+                            <a data-toggle="modal" data-target="#settings"><i class="fa fa-cog fa-2x"></i></a>
+                        </li>
+                        {% else %}
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-primary">Follow</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                   
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <span class="font-weight-bold">{{images|length}} </span> Posts
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="font-weight-bold">{{followers|length}}</span> Followers
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="font-weight-bold">{{following|length}}</span> Following
+                        </li>
+                    </ul>
+                   
+                    <p class="font3">{{profile_details.bio|safe}}</p>
+                    {% if profile.username == user.username %}
+                    <p><a href="{% url 'post_image' %}">Add Image</a></p>
+                    {% endif %} 
                 </div>
             </div>
         </div>
     </div>
+    <hr>
+    <h3 style="text-align: center;">All Posts</h3>
+    <div class="row user-images">
+        {% for img in images %}
+        <div class="col-md-4 images">
+            <img src="{{img.image.url}}" alt="Image">
+        </div>
+        {% empty %}
+        <div class="col-md-12">
+            <h2> No Uploaded images</h2>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 
+<!---modal class-->
 
-
-
-
+<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body"><ul class="list-group">
+    
+            <li class="list-group-item text-center"><a href="/logout/">Log Out</a></li>
+            <li class="list-group-item text-center"><a data-dismiss="modal">Cancel</a></li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

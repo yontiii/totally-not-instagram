@@ -31,7 +31,7 @@ def update_profile(request):
         # p_form = ProfileUpdateForm(instance=request.user.profile)
         
     
-    return render(request,'users/profile.html',{"u_form":u_form})
+    return render(request,'users/update_profile.html',{"u_form":u_form})
 
 @login_required(login_url='/accounts/login/')
 def post_image(request):
@@ -48,3 +48,13 @@ def post_image(request):
 
 
 @login_required(login_url='/accounts/login/')
+def profile(request,username):
+    profile = User.objects.get(username=username)
+    
+    try:
+        profile_details = Profile.get_by_id(profile.id)
+    except:
+        profile_details = Profile.filter_by_id(profile.id)
+    images = Image.get_profile_images(profile.id)
+    
+    return render(request, 'users/profile.html',{"profile":profile,"profile_details":profile_details,"images":images})
