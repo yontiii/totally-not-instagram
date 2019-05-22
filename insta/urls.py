@@ -8,7 +8,10 @@ urlpatterns = [
     url('^updateprofile/',views.update_profile,name='update_profile'),
     url(r'^profile/(?P<username>\w+)', views.profile, name='profile'),
     url('^uploads/',views.post_image,name='post_image'),
+    url('^explore/$',views.explore,name='explore'),
 
-]
+] 
+
 if settings.DEBUG:
-    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) 
+    

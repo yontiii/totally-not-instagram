@@ -35,12 +35,14 @@ def update_profile(request):
 
 @login_required(login_url='/accounts/login/')
 def post_image(request):
+    current_user = request.user
     if request.method == 'POST':
         upload_form = UserUploadForm(request.POST, request.FILES)
         if upload_form.is_valid():
-            upload = upload_form.save(commit=False)
+            home = upload_form.save(commit=False)
+            home.profile =current_user
             upload_form.save()
-            return redirect('home.html')
+        return redirect('home')
     else:
         upload_form = UserUploadForm()
             
@@ -57,4 +59,10 @@ def profile(request,username):
         profile_details = Profile.filter_by_id(profile.id)
     images = Image.get_profile_images(profile.id)
     
-    return render(request, 'users/profile.html',{"profile":profile,"profile_details":profile_details,"images":images})
+    return render(request, 'users/profile.html',{"profile":profile,"profile_details":profile_details,"images":images}) 
+
+@login_required(login_url='/accounts/login/')
+def explore(request):
+    images = Image.objects.all()
+    
+    return render(request, 'explore.html',{"images":images,} )

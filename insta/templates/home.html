@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <div class="row">
 <div class="col-md-10">
 <div class="row">
@@ -30,7 +31,7 @@
       
         <!-- Avatar -->
         <div class="avatar mx-auto white">
-          <img src="{{user.profile.profile_photo.url}}"  alt=" avatar" height="200" width="200">
+          <img src="{{user.profile.profile_photo.url}}"  alt=" avatar" height="100" width="100">
         </div>
       
         <!-- Content -->
@@ -39,9 +40,18 @@
           <h4 class="card-title text-center pink-text"> {{user.username}}</h4>
           <hr>
           <!-- Quotation -->
-          <p><i class="fab fa-google-plus-g pink-text animated FadeInRight"></i> : {{user.email}}</p>
         </div>
-      
+        <ul class="list-inline">
+                <li class="list-inline-item">
+                    <span class="font-weight-bold">{{images|length}} </span> Posts
+                </li>
+                <li class="list-inline-item">
+                    <span class="font-weight-bold">{{followers|length}}</span> Followers
+                </li>
+                <li class="list-inline-item">
+                    <span class="font-weight-bold">{{following|length}}</span> Following
+                </li>
+            </ul>
       </div>
       <!-- Card -->
    

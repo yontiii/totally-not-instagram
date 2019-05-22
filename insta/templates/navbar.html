@@ -9,12 +9,18 @@
     background:#FF5252;
   }
 
+  #heading{
+    padding: 10px;
+    color:white;
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,88,31,1) 65%, rgba(253,29,29,1) 74%, rgba(253,52,35,1) 78%, rgba(253,62,30,1) 85%, rgba(252,176,69,1) 100%);
+  }
 </style>
-<header>
+<header style="margin:0%;">
   <nav style="background-color:white;" class="animated fadeInRight">
     <div class="navbar mx-5">
       <div class="navbar-brand">
-        <a href="{% url 'home' %}"><i class="fab fa-instagram" style="font-size:30px;" id="heading" >Instagram</i></a>
+         <a href="{% url 'home' %}"> <img src="https://www.edigitalagency.com.au/wp-content/uploads/instagram-logo-and-icon-black-and-white-text-glyph-png.png" alt="" width="200px" height="60px"> </a>
 
       </div>
       <div class="nav-search">
@@ -35,3 +41,5 @@
     </div>
   </nav>
 </header>
+
+

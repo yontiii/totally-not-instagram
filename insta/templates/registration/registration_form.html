@@ -24,18 +24,7 @@
 
             </div>
             <br>
-            <h4 class="text-muted text-center blue-text">Get the App</h4>
-            <hr>
-            <div class="badge" style="display:flex;flex-direction:row;justify-content:space-around;">
-                <a href="https://itunes.apple.com/ke/app/instagram/id389801252?mt=8"><img
-                        src="https://www.steamyconcepts.com/wp-content/uploads/Steamy-Concepts-Mobile-App-Store-Apple-iOS.png"
-                        style="height:70px;width:200px;"></a>
-                <a href="https://play.google.com/store?hl=en"><img
-                        src="https://play.google.com/intl/en/badges/images/generic/en_badge_web_generic.png"
-                        style="height:70px;width:200px;"></a>
-                <hr>
-                <br>
-            </div>
+            
 
         </div>
         <div class="col-md-6">
@@ -47,12 +36,14 @@
                 <div class="card-body card-body-cascade ">
                     <h1 class="text black-text card-header text-center" style="font-family: 'Lobster Two', cursive;">
                         Instagram</h1> <br>
+                      
                     <h5 class="card-header info-color white-text text-center py-4">
                         <strong>Sign in</strong>
                     </h5>
+                    <br>
                     <form action="/accounts/register/" method="POST" style="color:#757575;">
                         {% csrf_token %}
-                        {% bootstrap_form form %}
+                        {% bootstrap_form form layout='inline' %}
 
                         <div class="form-group">
                             <input type="submit" class="btn btn-info btn-md text-center" value="Sign Up"
@@ -61,6 +52,17 @@
                         <input type="hidden" name="next" value="{{next}}">
                     </form>
                 </div>
+                <h4 class="text-muted text-center blue-text">Get the App</h4>
+            <hr>
+            <div class="badge" style="display:flex;flex-direction:row;justify-content:space-around;">
+                <a href="https://itunes.apple.com/ke/app/instagram/id389801252?mt=8"><img
+                        src="https://www.steamyconcepts.com/wp-content/uploads/Steamy-Concepts-Mobile-App-Store-Apple-iOS.png"
+                        style="height:70px;width:200px;"></a>
+                <a href="https://play.google.com/store?hl=en"><img
+                        src="https://play.google.com/intl/en/badges/images/generic/en_badge_web_generic.png"
+                        style="height:70px;width:200px;"></a>
+                <hr>
+                <br>
             </div>
         </div>
     </div>
