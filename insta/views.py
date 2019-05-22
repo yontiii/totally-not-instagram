@@ -10,28 +10,27 @@ from .models import Profile,Image
 @login_required(login_url='/accounts/login/')
 def home(request):
     
-    images = Image.get_all_images()
+    images = Image.objects.filter()
     users = User.objects.all()
     
     
     return render(request,'home.html',{"images":images,})
     
 
-@login_required(login_url='/accounts/login/')
-def update_profile(request):
+@login_required(login_url='/accounts/login')
+def edit_profile(request):
+    current_user = request.user
     if request.method == 'POST':
-        u_form = UserUpdateForm(request.POST,instance=request.user)
-        # p_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
-        
-        if u_form.is_valid():
-            u_form.save()
-            return redirect('profile.html')
+        form = ProfileUpdateForm(request.POST, request.FILES)
+        if form.is_valid():
+            edit = form.save(commit=False)
+            edit.user = current_user
+            form.save()
+        return redirect('profile.html')
     else:
-        u_form = UserUpdateForm(instance=request.user)
-        # p_form = ProfileUpdateForm(instance=request.user.profile)
-        
-    
-    return render(request,'users/update_profile.html',{"u_form":u_form})
+        form = ProfileUpdateForm()
+
+    return render(request, 'users/update_profile.html', {'form':form})
 
 @login_required(login_url='/accounts/login/')
 def post_image(request):
@@ -66,3 +65,19 @@ def explore(request):
     images = Image.objects.all()
     
     return render(request, 'explore.html',{"images":images,} )
+
+
+@login_required(login_url='/accounts/login/')
+def search_results(request):
+    if 'users' in request.GET and request.GET['users']:
+        search_term = request.GET.get("users")
+        searched_users = Profile.search_by_users(search_term)
+        
+        message = f'{search_term}'
+        
+        return render(request,'search.html',{"message":message,"users":searched_users})
+    
+    else:
+        message = "You haven't searched for any term"
+        return render(request,'search.html',{"message":message,"users":searched_users})
+        

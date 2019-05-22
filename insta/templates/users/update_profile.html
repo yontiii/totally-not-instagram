@@ -20,7 +20,7 @@
                   <h4 class="card-title text-center pink-text"> {{user.username}}</h4>
                   <hr>
                   <!-- Quotation -->
-                  <p><i class="fab fa-google-plus-g pink-text animated FadeInRight"></i> : {{user.email}}</p>
+                 
                 </div>
               
               </div>
@@ -32,10 +32,10 @@
                     <h1 class="  text-center pink-text">
                         Update Profile</h1> <br> <hr>
 
-                    <form action="/accounts/register/" method="POST" style="color:#757575;"
+                    <form action="{% url 'update_profile' %}" method="POST" style="color:#757575;"
                         enctype="multipart/form-data">
                         {% csrf_token %}
-                        {% bootstrap_form u_form %}
+                        {% bootstrap_form form %}
 
 
                         <div class="form-group">

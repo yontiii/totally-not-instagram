@@ -7,7 +7,7 @@ from django.dispatch import receiver
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,null=True,blank=True)
     profile_photo = models.ImageField(default='default.jpg',upload_to='profiles/')
     bio = models.TextField(max_length=500,default='Tell Me Something')
     website = models.CharField(max_length=10, blank=True,default='me.com')
@@ -35,6 +35,11 @@ class Profile(models.Model):
         profile = Profile.objects.filter(user = id).first()
         return profile
     
+    
+    @classmethod
+    def search_by_users(cls,search_term):
+        users = cls.objects.filter(user__username__icontains=search_term)
+        return users
     
     def __str__(self):
         return self.bio
@@ -78,7 +83,7 @@ class Image(models.Model):
 
 class Comments(models.Model):
     image = models.ForeignKey(Image)
-    user = models.ForeignKey(User)
+    # user = models.ForeignKey(User)
     comment = models.CharField(max_length=200)
     posted_on = models.DateTimeField(auto_now_add=True)
     

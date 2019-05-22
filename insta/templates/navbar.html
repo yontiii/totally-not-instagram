@@ -1,38 +1,40 @@
 <style>
- 
-  #post{
+  #post {
     background: #e53935;
-    color:white;
-    padding: 5px;
-  }
-  #post:hover{
-    background:#FF5252;
+    color: white;
   }
 
-  #heading{
+  #post:hover {
+    background: #FF5252;
+  }
+
+  #heading {
     padding: 10px;
-    color:white;
-    background: rgb(131,58,180);
-    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,88,31,1) 65%, rgba(253,29,29,1) 74%, rgba(253,52,35,1) 78%, rgba(253,62,30,1) 85%, rgba(252,176,69,1) 100%);
+    color: white;
+    background: rgb(131, 58, 180);
+    background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 88, 31, 1) 65%, rgba(253, 29, 29, 1) 74%, rgba(253, 52, 35, 1) 78%, rgba(253, 62, 30, 1) 85%, rgba(252, 176, 69, 1) 100%);
   }
 </style>
 <header style="margin:0%;">
   <nav style="background-color:white;" class="animated fadeInRight">
     <div class="navbar mx-5">
       <div class="navbar-brand">
-         <a href="{% url 'home' %}"> <img src="https://www.edigitalagency.com.au/wp-content/uploads/instagram-logo-and-icon-black-and-white-text-glyph-png.png" alt="" width="200px" height="60px"> </a>
+        <a href="{% url 'home' %}"> <img
+            src="https://www.edigitalagency.com.au/wp-content/uploads/instagram-logo-and-icon-black-and-white-text-glyph-png.png"
+            alt="" width="200px" height="60px"> </a>
 
       </div>
       <div class="nav-search">
-        <form class="form-inline md-form form-sm active-pink active-pink-2 mt-2">
+        <form class="form-inline md-form form-md active-pink active-pink-2 mt-2" action="{% url 'search_results' %}">
           <i class="fas fa-search" aria-hidden="true"></i>
-          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
+          <input class="form-control form-control-md ml-3 w-75" type="text" placeholder="Search" aria-label="Search"
+            name="users">
         </form>
       </div>
       <div class="nav-right">
-          <a href=""><i class="far fa-compass" style="
+        <a href="{% url 'explore' %}"><i class="far fa-compass" style="
           font-size:20px;"></i></a>
-      
+
         <img src="" alt="" />
         <a href="{% url 'profile' username=user %}" class="avatar">
           <img class="rounded-circle" alt="" src="{{user.profile.profile_photo.url}}" height="60" width="45" />
@@ -41,5 +43,3 @@
     </div>
   </nav>
 </header>
-
-
