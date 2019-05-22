@@ -7,8 +7,8 @@
     {% for image in images %}
     <div class="col-md-4">
         <div class="card animated zoomInRight">
-            <div class="card-title">
-                <img src="{{user.profile.profile_photo.url}}" alt="" width="20" height="30">
+            <div class="card-title" >
+                <img src="{{user.profile.profile_photo.url}}" alt="" width="40" height="45" data-toggle="modal" data-target="#myModal{{image.id}}" >
                 <a href="{% url 'profile' username=image.profile.username %}">{{image.profile}}</a>
             </div>
             <div class="card-img-top ">
@@ -43,7 +43,7 @@
         </div>
         <ul class="list-inline">
                 <li class="list-inline-item">
-                    <span class="font-weight-bold">{{images|length}} </span> Posts
+                    <span class="font-weight-bold">{{user.images|length}} </span> Posts
                 </li>
                 <li class="list-inline-item">
                     <span class="font-weight-bold">{{followers|length}}</span> Followers
@@ -57,5 +57,25 @@
    
 </div>
 </div>
+{% for image in images %}
+<div id="myModal{{image.id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{image.profile}}</h4>
+            </div>
+            <div class="modal-body">
+                <img src="{{image.images.url}}" class="img-responsive" alt="Image">
+            </div>
+            <div class="modal-footer">
+                <p data-dismiss="modal">{{image.caption}}</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+{% endfor %}
 
 {% endblock %}

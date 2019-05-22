@@ -46,8 +46,7 @@ class Image(models.Model):
     image_caption = models.TextField(max_length=150)
     date_posted = models.DateTimeField(auto_now=True)
     
-    class Meta:
-        ordering = ('date_posted',)
+  
     
     def save_image(self):
         self.save()
@@ -62,6 +61,8 @@ class Image(models.Model):
     
     @classmethod
     def get_all_images(cls):
+        class Meta:
+            ordering = ('date_posted',)
         images = Image.objects.all()
         return images
     
