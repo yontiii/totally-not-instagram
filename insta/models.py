@@ -10,9 +10,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,null=True,blank=True)
     profile_photo = models.ImageField(default='default.jpg',upload_to='profiles/')
     bio = models.TextField(max_length=500,default='Tell Me Something')
-    website = models.CharField(max_length=10, blank=True,default='me.com')
-    followers = models.ManyToManyField('Profile',blank=True, related_name='followers_profile')
-    following = models.ManyToManyField('Profile',blank=True,related_name='following_profile')
+    website = models.CharField(max_length=10, blank=True,default='me.com') 
     phone_number = models.CharField(max_length=10,default=12345678)
     
     
