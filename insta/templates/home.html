@@ -2,74 +2,73 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-md-10">
-        <div class="row">
-            {% for image in images %}
-            <div class="col-md-4">
-                <div class="card animated zoomInRight">
-                    <div class="card-title"  >
-                        <img src="{{user.profile.profile_photo.url}}" alt="" width="40" height="45"
-                          >
-                        <a href="{% url 'profile' username=image.profile.username %}">{{image.profile}}</a>
-                    </div>
-                    <div class="card-img-top ">
-                        <img src="{{image.image.url}}" alt="" class="rgba-red-slight i" width="100%" height="350" data-toggle="modal" data-target="#myModal{{image.id}}">
-                    </div>
-                    <div class="card-footer">
-                        <h2></h2>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-            
+  <div class="col-md-10">
+    <div class="row">
+      {% for image in images %}
+      <div class="col-md-4">
+        <div class="card animated zoomInRight">
+          <div class="card-title">
+            <img src="{{user.profile.profile_photo.url}}" alt="" width="40" height="45">
+            <a href="{% url 'profile' username=image.profile.username %}">{{image.profile}}</a>
+          </div>
+          <div class="card-img-top ">
+            <img src="{{image.image.url}}" alt="" class="rgba-red-slight i" width="100%" height="350"
+              data-toggle="modal" data-target="#myModal{{image.id}}">
+          </div>
+          <div class="card-footer">
+            <h2></h2>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
     </div>
 
-</div>
-<div class="col-md-2">
+  </div>
+  <div class="col-md-2">
     <div class="card testimonial-card">
-        <!-- Background color -->
-        <div class="card-up indigo lighten-1"></div>
+      <!-- Background color -->
+      <div class="card-up indigo lighten-1"></div>
 
-        <!-- Avatar -->
-        <div class="avatar mx-auto white">
-            <img src="{{user.profile.profile_photo.url}}" alt=" avatar" height="100" width="100">
-        </div>
+      <!-- Avatar -->
+      <div class="avatar mx-auto white">
+        <img src="{{user.profile.profile_photo.url}}" alt=" avatar" height="100" width="100">
+      </div>
 
-        <!-- Content -->
-        <div class="card-body">
-            <!-- Name -->
-            <h4 class="card-title text-center pink-text"> {{user.username}}</h4>
-            <hr>
-            <!-- Quotation -->
-        </div>
-        <ul class="list-inline">
-            <li class="list-inline-item">
-                <span class="font-weight-bold">{{user.images|length}} </span> Posts
-            </li>
-            <li class="list-inline-item">
-                <span class="font-weight-bold">{{followers|length}}</span> Followers
-            </li>
-            <li class="list-inline-item">
-                <span class="font-weight-bold">{{following|length}}</span> Following
-            </li>
-        </ul>
+      <!-- Content -->
+      <div class="card-body">
+        <!-- Name -->
+        <h4 class="card-title text-center pink-text"> {{user.username}}</h4>
+        <hr>
+        <!-- Quotation -->
+      </div>
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <span class="font-weight-bold">{{user.images|length}} </span> Posts
+        </li>
+        <li class="list-inline-item">
+          <span class="font-weight-bold">{{followers|length}}</span> Followers
+        </li>
+        <li class="list-inline-item">
+          <span class="font-weight-bold">{{following|length}}</span> Following
+        </li>
+      </ul>
     </div>
     <!-- Card -->
 
-</div>
+  </div>
 </div>
 
 {% for image in images %}
 <div class="modal fade" id="myModal{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-notify modal-danger white-text" role="document">
-  
+
     <div class="modal-content">
-   
+
       <div class="modal-header">
-            <img src="{{user.profile.profile_photo.url}}" alt="" width="40" height="45"
-            >
-          <a href="{% url 'profile' username=image.profile.username %}" class="white-text">{{image.profile}}</a>
+        <img src="{{user.profile.profile_photo.url}}" alt="" width="40" height="45">
+        <a href="{% url 'profile' username=image.profile.username %}" class="white-text">{{image.profile}}</a>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true" class="white-text">&times;</span>
         </button>
@@ -78,25 +77,25 @@
       <!--Body-->
       <div class="modal-body">
         <div class="text-center">
-        
-                <i class= "far fa-spinner mb-3 animated fadeOut"></i>
-                <img src="{{image.image.url}}" alt="" class="rgba-red-slight i text-center" width="-485" height="400">
-                <br>
-               <h4 class="pink-text">{{image.image_caption}}</h4>
+
+          <i class="far fa-spinner mb-3 animated fadeOut"></i>
+          <img src="{{image.image.url}}" alt="" class="rgba-red-slight i text-center" width="-485" height="400">
+          <br>
+          <h4 class="pink-text">{{image.image_caption}}</h4>
         </div>
       </div>
 
       <!--Footer-->
       <div class="modal-footer justify-content-center">
-       
-      
+
+
       </div>
     </div>
     <!--/.Content-->
   </div>
 </div>
 <!-- Central Modal Medium Info-->
-        {% endfor %}
+{% endfor %}
 
 
 
