@@ -43,7 +43,7 @@ class ImageTestCase(TestCase):
         
         #creating a user instance
         self.user = User(username="john",email="k@gmail.com",password="john01")
-        self.image = Image(user=self.user,image="default.jpg",image_name="its me",image_caption="I am a good boy",date_posted="2017-8-12")
+        self.image = Image(image="default.jpg",image_name="its me",image_caption="I am a good boy",date_posted="2017-8-12")
 
         def tearDown(self):
             User.objects.all().delete()
@@ -54,13 +54,13 @@ class ImageTestCase(TestCase):
             self.assertTrue(isinstance(self.image,Image))
             
     def test_save_image(self):
-        new_image =Image(user=self.user,image="default.jpg",image_name="its me",image_caption="I am a good boy",date_posted="2017-8-12")
+        new_image =Image(image="default.jpg",image_name="its me",image_caption="I am a good boy",date_posted="2017-8-12")
         new_image.save()
         images = Image.objects.all()
         self.assertTrue(len(images)>=1)
         
     def test_delete_image(self):
-       new_image =Image(user=self.user,image="default.jpg",image_name="its me",image_caption="I am a good boy", date_posted="2017-8-12")
+       new_image =Image(image="default.jpg",image_name="its me",image_caption="I am a good boy", date_posted="2017-8-12")
        new_image.delete()
        images = Image.objects.all()
        self.assertTrue(len(images)<1)
